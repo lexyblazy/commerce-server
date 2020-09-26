@@ -1,0 +1,43 @@
+{
+    "extends": [
+      "tslint:latest",
+      "tslint-eslint-rules",
+      "tslint-plugin-prettier",
+      "tslint-config-prettier"
+    ],
+    "linterOptions": {
+      "exclude": [
+        "node_modules/**/*.ts"
+      ]
+    },
+    "rules": {
+      "import-name": false,
+      "interface-name": [
+        true,
+        "never-prefix"
+      ],
+      "member-access": false,
+      "member-ordering": false,
+      "no-boolean-literal-compare": false,
+      "no-implicit-dependencies": false,
+      "no-var-requires": false,
+      "object-literal-sort-keys": false,
+      "no-submodule-imports": [
+        true,
+        "express-validator/check"
+      ],
+      "indent": [
+        true,
+        "spaces",
+        2
+      ],
+      "variable-name": false,
+      "prettier": true,
+      "newline-before-return": true,
+      "no-console": false,
+      "no-magic-numbers": true,
+      "no-return-await": false,
+      "no-floating-promises": true
+    }
+  }
+  
