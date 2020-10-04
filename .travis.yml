@@ -5,4 +5,5 @@ before_install:
   - docker build -f Dockerfile.dev -t lexyblazy/commerce-server .
 
 script:
-  - docker run lexyblazy/commerce-server
+  - docker run lexyblazy/commerce-server npm test:ci
+
