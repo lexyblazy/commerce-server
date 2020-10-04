@@ -1,12 +1,12 @@
 import express from "express";
 
-const app = express();
+export const app = express();
 const PORT = 5000;
 
 app.get("/", (_req, res) => {
   res.send(`
     <html>
-     Hello there how are you doing
+     Hello there how are you doing there
     </html>
     `);
 });
