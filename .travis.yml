@@ -7,3 +7,14 @@ before_install:
 script:
   - docker run lexyblazy/commerce-server npm run test:ci
 
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: "commerce-server"
+  env: "CommerceServer-env"
+  bucket_name: "elasticbeanstalk-us-east-2-017908065641"
+  bucket_path: "commerce-server"
+  on:
+    branch: master
+  access_key_id: "$AWS_ACCESS_KEY"
+  secret_access_key: "$AWS_SECRET_KEY"
