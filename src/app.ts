@@ -1,11 +1,16 @@
 import express from "express";
-import HttpStatus from "http-status-codes";
+import { loadServices } from "./loadServices";
+import { loadRouters } from "./loadRouters";
 
 const app = express();
 const PORT = 5000;
 
-app.get("/", (_req, res) => {
-  res.send(HttpStatus.OK);
+const loadServicesPromise = loadServices();
+const loadServicesAndRoutersPromise = loadRouters(loadServicesPromise, app);
+
+app.use(async (_req, _res, next) => {
+  await loadServicesAndRoutersPromise;
+  next();
 });
 
 app.listen(PORT, () => {
