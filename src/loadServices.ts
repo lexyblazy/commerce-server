@@ -20,7 +20,9 @@ export const loadServices = async () => {
     database: kms.SETTINGS.POSTGRES_DATABASE,
   });
 
-  console.log("All settings", kms.SETTINGS);
+  console.log(LOG_NAME, kms.SETTINGS);
 
   await typeorm.createConnection(typeormConnectionOptions);
+
+  console.log(LOG_NAME, "Database connection established");
 };
