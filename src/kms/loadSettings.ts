@@ -13,7 +13,7 @@ export const loadSettings = async (settings: KMSSettings) => {
     throw new Error("Unable to resolve server environment");
   }
 
-  console.log(LOG_NAME, `Resolved server environment = ${environment}`);
+  console.log(LOG_NAME, `Resolved server environment=${environment}`);
 
   const environmentSettings = settings[environment];
 
@@ -27,6 +27,7 @@ export const loadSettings = async (settings: KMSSettings) => {
 
   for (const key in environmentSettings.encrypted) {
     if (environmentSettings.encrypted.hasOwnProperty(key)) {
+      console.log(`decrypting ${key} for ${environment} environment`);
       const value: string = _.get(environmentSettings.encrypted, key);
       const decryptedValue = await kms.helpers.decrypt(value);
       result[key] = decryptedValue;
