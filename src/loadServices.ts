@@ -1,8 +1,21 @@
 import * as typeorm from "typeorm";
+import * as kms from "./kms";
+import * as settings from "./settings";
 
 export const loadServices = async () => {
-  const typeormConnectionOptions = await typeorm.getConnectionOptions();
+  const typeormConnectionOptions = await typeorm.getConnectionOptions(); // this loads the .env file  while trying to find the connection options
+
+  kms.initialize();
+
+  await kms.loadSettings(settings);
+
+  Object.assign(typeormConnectionOptions, {
+    host: kms.SETTINGS.POSTGRES_HOST,
+    port: kms.SETTINGS.POSTGRES_PORT,
+    username: kms.SETTINGS.POSTGRES_USER,
+    password: kms.SETTINGS.POSTGRES_PASSWORD,
+    database: kms.SETTINGS.POSTGRES_DATABASE,
+  });
 
   await typeorm.createConnection(typeormConnectionOptions);
-  console.log("we loaded once for all");
 };
