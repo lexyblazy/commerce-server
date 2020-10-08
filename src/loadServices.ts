@@ -20,5 +20,7 @@ export const loadServices = async () => {
     database: kms.SETTINGS.POSTGRES_DATABASE,
   });
 
+  console.log("All settings", kms.SETTINGS);
+
   await typeorm.createConnection(typeormConnectionOptions);
 };
