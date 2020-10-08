@@ -11,6 +11,7 @@ const main = async () => {
   await loadServices();
   await loadRouters(app);
 
+  console.log({ PORT });
   app.listen(PORT);
 };
 main();
