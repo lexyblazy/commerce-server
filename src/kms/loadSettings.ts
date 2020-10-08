@@ -12,6 +12,10 @@ export const loadSettings = async (settings: KMSSettings) => {
 
   const environmentSettings = settings[environment];
 
+  if (!environmentSettings) {
+    throw new Error("Unable to resolve server environmentSettings");
+  }
+
   const result: Record<string, string | number> = {
     ...environmentSettings.plain,
   };
