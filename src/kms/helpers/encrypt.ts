@@ -1,7 +1,7 @@
 import * as kms from "../../kms";
 
 export const encrypt = async (text: string): Promise<string> => {
-  console.log(`encrypting for ${process.env.NODE_ENV}  environment`);
+  console.log(`encrypting for ${process.env.environment}  environment`);
 
   return new Promise((resolve, reject) => {
     const kmsClient = kms.getClient();

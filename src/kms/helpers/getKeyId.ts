@@ -1,5 +1,5 @@
 export const getKeyId = () => {
-  const environment = process.env.NODE_ENV as Environment;
+  const environment = process.env.environment as Environment;
 
   let keyId: string | null;
 

@@ -4,11 +4,16 @@ import * as kms from "../kms";
 export const SETTINGS: Record<string, string | number> = {}; // this object will contain all the credential keys both  for the resolved environment
 
 export const loadSettings = async (settings: KMSSettings) => {
-  const environment = process.env.NODE_ENV as Environment | undefined;
+  const LOG_NAME = "kms.loadSettings =>";
+  const environment = process.env.environment as Environment | undefined;
+
+  console.log(LOG_NAME, `process.env.environment=${environment}`);
 
   if (!environment) {
     throw new Error("Unable to resolve server environment");
   }
+
+  console.log(LOG_NAME, `Resolved server environment = ${environment}`);
 
   const environmentSettings = settings[environment];
 
