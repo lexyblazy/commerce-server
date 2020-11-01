@@ -54,7 +54,9 @@ export const create = async (req: express.Request, res: express.Response) => {
       const isCorrectPassword = bcrypt.compareSync(password, merchant.password);
 
       if (!isCorrectPassword) {
-        return res.sendStatus(HttpStatus.UNAUTHORIZED);
+        return res
+          .status(HttpStatus.UNAUTHORIZED)
+          .send({ error: "Incorrect email or password" });
       }
 
       const newSession: Partial<SessionEntity> = {

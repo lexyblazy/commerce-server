@@ -17,7 +17,7 @@
     "dev": "yarn build && yarn nodemon build/app.js",
     "tslint": "tslint -c tslint.json 'src/**/*.ts'",
     "tslintfix": "tslint -c tslint.json 'src/**/*.ts' --fix",
-    "audit-dep": "npx madge --circular ./build",
+    "audit-dep": "yarn build && npx madge --circular ./build",
     "test": "jest --detectOpenHandles",
     "test:ci": "jest --detectOpenHandles --CI=true",
     "typeorm": "yarn build && node --require ts-node/register ./node_modules/typeorm/cli.js"
