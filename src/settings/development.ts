@@ -7,4 +7,7 @@ export const plain = {
   POSTGRES_DATABASE: "commerce",
 };
 
-export const encrypted = {};
+export const encrypted = {
+  SENDGRID_API_KEY:
+    "AQICAHijOfWUWEhNcDrzwuTIeZRSwG4UQEMer44rG9Gqc6eXnAEYM9qxKfA2drgB6W+BL1mXAAAApzCBpAYJKoZIhvcNAQcGoIGWMIGTAgEAMIGNBgkqhkiG9w0BBwEwHgYJYIZIAWUDBAEuMBEEDC84QfesjWpCeekhCQIBEIBg5aCIrhC1JG1NVmaIDQ7bgpp4hnEQvTT5M8iP7s7EKc5Rup/RNcIEuJLZnl73zIHcUWb7Xdp1BEwIbpska+yNzS1yeb//fFM80ra+/TzozpQM0GToYgWhaJdA7vU3KzQt",
+};
