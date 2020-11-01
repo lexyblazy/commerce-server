@@ -1,3 +1,5 @@
-type LoadServicesPromise = ReturnType<
-  typeof import("./loadServices").loadServices
->;
+declare namespace Express {
+  interface Request {
+    session: SessionEntity;
+  }
+}
