@@ -15,7 +15,7 @@ export const destroy = (req: express.Request, res: express.Response) => {
       );
 
       await sessionsRepository.delete({
-        token: req.session.token
+        token: req.session.token,
       });
 
       res.sendStatus(HttpStatus.OK);
