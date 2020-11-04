@@ -1,14 +1,37 @@
-export const logFunctionException = async <T>(fn: () => T, name: string) => {
+import fs from "fs";
+
+import * as kms from "../../kms";
+
+import * as email from "../email";
+import * as environment from "../environment";
+
+export const logFunctionException = async <T>(fn: () => T, logName: string) => {
   try {
-    console.log(`${name} STARTING`);
+    console.log(`${logName} STARTING`);
 
     const result = await fn();
 
-    console.log(`${name} DONE`);
+    console.log(`${logName} DONE`);
 
     return result;
   } catch (error) {
-    console.log(error);
+    console.log(logName, error);
+    // tslint:disable-next-line:no-magic-numbers
+    const readableError = JSON.stringify(error, undefined, 3);
+
+    // use logFiles for development errors, use email/sentry for staging errors
+    if (environment.isDevelopment()) {
+      const fileName = `${Date.now()}-error.txt`;
+      fs.writeFileSync(fileName, readableError, "utf8");
+    } else {
+      await email.sendEmail({
+        from: kms.SETTINGS.INTERNAL_LOGS_EMAIL,
+        to: kms.SETTINGS.ADMIN_EMAIL,
+        subject: logName,
+        html: readableError,
+        text: readableError,
+      });
+    }
 
     return null;
   }

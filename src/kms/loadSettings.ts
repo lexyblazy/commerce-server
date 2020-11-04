@@ -1,7 +1,7 @@
 import _ from "lodash";
 import * as kms from "../kms";
 
-export const SETTINGS: Record<string, string | number> = {}; // this object will contain all the credential keys both  for the resolved environment
+export const SETTINGS: Record<string, string> = {}; // this object will contain all the credential keys both  for the resolved environment
 
 export const loadSettings = async (settings: KMSSettings) => {
   const LOG_NAME = "kms.loadSettings =>";
