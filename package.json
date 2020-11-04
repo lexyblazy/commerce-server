@@ -23,6 +23,7 @@
     "typeorm": "yarn build && node --require ts-node/register ./node_modules/typeorm/cli.js"
   },
   "dependencies": {
+    "@sendgrid/mail": "^7.3.0",
     "aws-sdk": "^2.766.0",
     "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
