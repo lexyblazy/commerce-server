@@ -1,5 +1,7 @@
 export const plain = {
   POSTGRES_PORT: 5432,
+  ADMIN_EMAIL: "lexyblazy@gmail.com",
+  INTERNAL_LOGS_EMAIL: "logs@commerce.com",
 };
 
 export const encrypted = {
