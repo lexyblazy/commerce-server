@@ -16,7 +16,7 @@ export const logFunctionException = async <T>(fn: () => T, logName: string) => {
     return result;
   } catch (error) {
     console.log(logName, error);
-    // tslint:disable-next-line:no-magic-numbers
+
     const readableError = JSON.stringify(error, undefined, 3);
 
     // use logFiles for development errors, use email/sentry for staging errors

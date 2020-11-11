@@ -9,7 +9,6 @@ const main = async () => {
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(bodyParser.json());
 
-  // tslint:disable-next-line
   const PORT = process.env.PORT ?? 5000;
 
   await loadServices();
