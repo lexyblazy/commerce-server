@@ -14,7 +14,6 @@ export const sendEmail = async ({
 }) => {
   sgMail.setApiKey(kms.SETTINGS.SENDGRID_API_KEY);
 
-
   const msg = {
     to,
     from,
