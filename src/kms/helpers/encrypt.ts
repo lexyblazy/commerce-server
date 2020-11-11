@@ -14,7 +14,7 @@ export const encrypt = async (text: string): Promise<string> => {
 
     kmsClient.encrypt(
       {
-        KeyId: keyId!,
+        KeyId: keyId,
         Plaintext: Buffer.from(text),
       },
       (err, data) => {

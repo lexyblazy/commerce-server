@@ -26,12 +26,10 @@ export const loadSettings = async (settings: KMSSettings) => {
   };
 
   for (const key in environmentSettings.encrypted) {
-    if (environmentSettings.encrypted.hasOwnProperty(key)) {
-      console.log(`decrypting ${key} for ${environment} environment`);
-      const value: string = _.get(environmentSettings.encrypted, key);
-      const decryptedValue = await kms.helpers.decrypt(value);
-      result[key] = decryptedValue;
-    }
+    console.log(`decrypting ${key} for ${environment} environment`);
+    const value: string = _.get(environmentSettings.encrypted, key);
+    const decryptedValue = await kms.helpers.decrypt(value);
+    result[key] = decryptedValue;
   }
 
   Object.assign(SETTINGS, result);

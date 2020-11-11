@@ -31,13 +31,11 @@ export const create = async (req: express.Request, res: express.Response) => {
       };
 
       for (const fieldName in loginFields) {
-        if (loginFields.hasOwnProperty(fieldName)) {
-          const fieldValue = _.get(loginFields, fieldName);
-          if (_.isEmpty(fieldValue)) {
-            return res
-              .status(HttpStatus.BAD_REQUEST)
-              .send({ error: `${fieldName} is required` });
-          }
+        const fieldValue = _.get(loginFields, fieldName);
+        if (_.isEmpty(fieldValue)) {
+          return res
+            .status(HttpStatus.BAD_REQUEST)
+            .send({ error: `${fieldName} is required` });
         }
       }
 
