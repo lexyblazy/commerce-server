@@ -6,7 +6,10 @@ export const plain = {
   POSTGRES_PASSWORD: "lol",
   POSTGRES_DATABASE: "commerce",
   ADMIN_EMAIL: "lexyblazy@gmail.com",
-  INTERNAL_LOGS_EMAIL: "logs@commerce.com",
+  INTERNAL_LOGS_EMAIL: "logs@commercify.com",
+  SUPPORT_EMAIL: "support@commercify.com",
+  WELCOME_EMAIL: "hello@commercify.com",
+  SERVER_URL: 'localhost:5000'
 };
 
 export const encrypted = {
