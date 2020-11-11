@@ -46,5 +46,11 @@ export const merchant = new typeorm.EntitySchema<MerchantEntity>({
       type: String,
       nullable: false,
     },
+
+    emailVerified: {
+      type: Boolean,
+      nullable: false,
+      default: false,
+    },
   },
 });

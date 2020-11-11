@@ -9,6 +9,8 @@ interface MerchantEntity {
 
   firstName: string;
   lastName: string;
+
+  emailVerified: boolean;
 }
 
 interface SessionEntity {
@@ -20,6 +22,17 @@ interface SessionEntity {
   token: string;
 
   mfaVerified: boolean;
+
+  user: MerchantEntity;
+}
+
+interface EmailVerificationRequestEntity {
+  id: string;
+
+  createdAt: Date;
+  updatedAt: Date;
+
+  token: string;
 
   user: MerchantEntity;
 }
