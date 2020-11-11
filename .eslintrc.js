@@ -10,5 +10,8 @@ module.exports = {
   rules: {
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "prettier/prettier": "error",
+    "no-empty": "error",
+    "no-unreachable": "error",
+    "no-unused-vars": "error",
   },
 };
