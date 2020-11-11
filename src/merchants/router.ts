@@ -6,5 +6,7 @@ export const create = () => {
 
   router.post("/", handlers.create);
 
+  router.get("/verify-email", handlers.verifyEmail);
+
   return router;
 };
