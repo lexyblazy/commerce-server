@@ -1,14 +1,15 @@
-import bcrypt from "bcrypt";
 import * as express from "express";
 import * as typeorm from "typeorm";
-import HttpStatus from "http-status-codes";
-import _ from "lodash";
 import * as uuid from "uuid";
 
+import _ from "lodash";
+import bcrypt from "bcrypt";
+import HttpStatus from "http-status-codes";
+
+import * as kms from "../../kms";
 import * as schemas from "../../schemas";
 import * as sessions from "../../sessions";
 import * as utils from "../../utils";
-import * as kms from "../../kms";
 
 import * as consts from "../consts";
 
@@ -26,8 +27,6 @@ export const create = async (req: express.Request, res: express.Response) => {
       const emailVerificationRequestsRepository = typeorm.getRepository(
         schemas.emailVerificationRequest
       );
-
-      const SALT_ROUNDS = 10;
 
       const { email, password, firstName, lastName } = req.body;
 
@@ -49,7 +48,7 @@ export const create = async (req: express.Request, res: express.Response) => {
 
       const hashedPassword = bcrypt.hashSync(
         signupFields.password,
-        SALT_ROUNDS
+        consts.SALT_ROUNDS
       );
 
       const existingMerchant = await merchantsRepository.findOne({

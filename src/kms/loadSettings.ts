@@ -1,5 +1,6 @@
-import _ from "lodash";
 import * as kms from "../kms";
+
+import _ from "lodash";
 
 export const SETTINGS: Record<string, string> = {}; // this object will contain all the credential keys both  for the resolved environment
 

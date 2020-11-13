@@ -1,7 +1,7 @@
-import express from "express";
 import bodyParser from "body-parser";
-import { loadServices } from "./loadServices";
+import express from "express";
 import { loadRouters } from "./loadRouters";
+import { loadServices } from "./loadServices";
 
 const main = async () => {
   const app = express();

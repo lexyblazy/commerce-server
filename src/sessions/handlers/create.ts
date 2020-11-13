@@ -1,9 +1,10 @@
 import * as bcrypt from "bcrypt";
 import * as express from "express";
-import _ from "lodash";
-import HttpStatus from "http-status-codes";
 import * as typeorm from "typeorm";
 import * as uuid from "uuid";
+
+import _ from "lodash";
+import HttpStatus from "http-status-codes";
 
 import * as schemas from "../../schemas";
 import * as utils from "../../utils";
