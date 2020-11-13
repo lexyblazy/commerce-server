@@ -36,3 +36,16 @@ interface EmailVerificationRequestEntity {
 
   user: MerchantEntity;
 }
+
+interface PasswordResetRequest {
+  id: string;
+
+  createdAt: Date;
+  updatedAt: Date;
+
+  token: string;
+
+  user: MerchantEntity;
+
+  expiresAt: Date;
+}

@@ -8,5 +8,9 @@ export const create = () => {
 
   router.get("/verify-email", handlers.verifyEmail);
 
+  router.post("/request-password-reset", handlers.requestPasswordReset);
+
+  router.post("/reset-password", handlers.resetPassword);
+
   return router;
 };
