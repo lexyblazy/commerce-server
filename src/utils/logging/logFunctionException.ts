@@ -5,6 +5,8 @@ import * as kms from "../../kms";
 import * as email from "../email";
 import * as environment from "../environment";
 
+const fileName = `${Date.now()}-error.txt`;
+
 export const logFunctionException = async <T>(fn: () => T, logName: string) => {
   try {
     console.log(`${logName} STARTING`);
@@ -21,8 +23,7 @@ export const logFunctionException = async <T>(fn: () => T, logName: string) => {
 
     // use logFiles for development errors, use email/sentry for staging errors
     if (environment.isDevelopment()) {
-      const fileName = `${Date.now()}-error.txt`;
-      fs.writeFileSync(fileName, readableError, "utf8");
+      fs.appendFileSync(fileName, readableError, "utf8");
     } else {
       const subject = `${process.env.environment} - ${logName}`;
 
