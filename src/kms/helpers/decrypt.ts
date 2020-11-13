@@ -12,15 +12,12 @@ export const decrypt = async (text: string): Promise<string> => {
 
     const buffer = Buffer.from(text, "base64");
 
-    kmsClient.decrypt(
-      { KeyId: keyId!, CiphertextBlob: buffer },
-      (err, data) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(data.Plaintext?.toString());
-        }
+    kmsClient.decrypt({ KeyId: keyId, CiphertextBlob: buffer }, (err, data) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(data.Plaintext?.toString());
       }
-    );
+    });
   });
 };

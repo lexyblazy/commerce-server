@@ -1,5 +1,10 @@
 export const plain = {
   POSTGRES_PORT: 5432,
+  ADMIN_EMAIL: "lexyblazy@gmail.com",
+  INTERNAL_LOGS_EMAIL: "logs@commercify.com",
+  SUPPORT_EMAIL: "support@commercify.com",
+  WELCOME_EMAIL: "hello@commercify.com",
+  SERVER_URL: "",
 };
 
 export const encrypted = {
@@ -11,4 +16,6 @@ export const encrypted = {
     "AQICAHh7dcuFfLCQ6CHlCoFO9HYRI2e7yhQOQ822TvYKq4BM8wG4ub6kzsupSYHmrlcwSaDPAAAAbDBqBgkqhkiG9w0BBwagXTBbAgEAMFYGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMpqOq4aj3ch+dAgWUAgEQgCkIk9YpFEpj+HlyXiG0Uu5Y8JgAElUivx+GRR12pu1iVQw6xSx0qqnw1Q==",
   POSTGRES_DATABASE:
     "AQICAHh7dcuFfLCQ6CHlCoFO9HYRI2e7yhQOQ822TvYKq4BM8wHCCXBEjk32dksNWeYxUoCgAAAAZjBkBgkqhkiG9w0BBwagVzBVAgEAMFAGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMOY+CggA2y5gbrm/PAgEQgCNgbfm00BVp1xmLyyn9UaShUnotMcO3Gjn1KE4fKw0mUuWkhg==",
+  SENDGRID_API_KEY:
+    "AQICAHh7dcuFfLCQ6CHlCoFO9HYRI2e7yhQOQ822TvYKq4BM8wHN8qtSa9RhLvkl9XcnCPYnAAAApzCBpAYJKoZIhvcNAQcGoIGWMIGTAgEAMIGNBgkqhkiG9w0BBwEwHgYJYIZIAWUDBAEuMBEEDMBQJEK7qkgNd+2blgIBEIBgWVpJCw4auTKbhtNGQQA77yvsoChu4uGdbX7nbtY1rLcHeZJy05QHaFwPrfIACSBjCzeLU0fDne0jVfsjo486/ZOTxxOXVxjynKFiHp3ASuXfLLfIXlSvJT3NSzqh0cnS",
 };

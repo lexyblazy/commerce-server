@@ -1,7 +1,8 @@
-import _ from "lodash";
 import * as kms from "../kms";
 
-export const SETTINGS: Record<string, string | number> = {}; // this object will contain all the credential keys both  for the resolved environment
+import _ from "lodash";
+
+export const SETTINGS: Record<string, string> = {}; // this object will contain all the credential keys both  for the resolved environment
 
 export const loadSettings = async (settings: KMSSettings) => {
   const LOG_NAME = "kms.loadSettings =>";
@@ -26,12 +27,10 @@ export const loadSettings = async (settings: KMSSettings) => {
   };
 
   for (const key in environmentSettings.encrypted) {
-    if (environmentSettings.encrypted.hasOwnProperty(key)) {
-      console.log(`decrypting ${key} for ${environment} environment`);
-      const value: string = _.get(environmentSettings.encrypted, key);
-      const decryptedValue = await kms.helpers.decrypt(value);
-      result[key] = decryptedValue;
-    }
+    console.log(`decrypting ${key} for ${environment} environment`);
+    const value: string = _.get(environmentSettings.encrypted, key);
+    const decryptedValue = await kms.helpers.decrypt(value);
+    result[key] = decryptedValue;
   }
 
   Object.assign(SETTINGS, result);
