@@ -1,5 +1,5 @@
 # Backend for Commerce App
 
-This is(will be) a clone of [Paystack commerce](https://paystack.com/commerce) built for learning purposes.
+This is(will be) a mix of [Shopify](https://www.shopify.com/) and [Paystack commerce](https://paystack.com/commerce) built for learning purposes.
 
-## Paystack **PLEASE DON'T SUE ME**
+## **PLEASE DON'T SUE ME**
