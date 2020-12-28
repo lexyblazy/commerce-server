@@ -9,7 +9,8 @@ export const plain = {
   INTERNAL_LOGS_EMAIL: "logs@commercify.com",
   SUPPORT_EMAIL: "support@commercify.com",
   WELCOME_EMAIL: "hello@commercify.com",
-  SERVER_URL: "localhost:5000",
+  SERVER_URL: "http://localhost:5000",
+  FRONTEND_URL: "http://localhost:3000",
 };
 
 export const encrypted = {
