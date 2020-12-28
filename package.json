@@ -28,6 +28,7 @@
     "aws-sdk": "^2.766.0",
     "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "http-status-codes": "^2.1.4",
     "lodash": "^4.17.20",
@@ -39,6 +40,7 @@
   },
   "devDependencies": {
     "@types/bcrypt": "^3.0.0",
+    "@types/cors": "^2.8.9",
     "@types/express": "^4.17.8",
     "@types/jest": "^26.0.14",
     "@types/lodash": "^4.14.161",
