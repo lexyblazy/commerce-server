@@ -21,7 +21,11 @@ export const encrypt = async (text: string): Promise<string> => {
         if (err) {
           reject(err);
         } else {
-          resolve(data.CiphertextBlob?.toString("base64"));
+          if (data.CiphertextBlob) {
+            resolve(data.CiphertextBlob.toString("base64"));
+          } else {
+            throw new Error("Failed to encrypt [text]");
+          }
         }
       }
     );

@@ -16,7 +16,11 @@ export const decrypt = async (text: string): Promise<string> => {
       if (err) {
         reject(err);
       } else {
-        resolve(data.Plaintext?.toString());
+        if (data.Plaintext) {
+          resolve(data.Plaintext.toString());
+        } else {
+          throw new Error("Failed to decrypt [text]");
+        }
       }
     });
   });
