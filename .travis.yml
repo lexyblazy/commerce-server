@@ -10,10 +10,10 @@ script:
 deploy:
   provider: elasticbeanstalk
   region: "us-east-2"
-  app: "commerce-server"
-  env: "CommerceServer-env"
+  app: "Commercify Server"
+  env: "CommercifyServer-env"
   bucket_name: "elasticbeanstalk-us-east-2-017908065641"
-  bucket_path: "commerce-server"
+  bucket_path: "commercify-server"
   on:
     branch: master
   access_key_id: "$AWS_ACCESS_KEY"
