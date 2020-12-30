@@ -1,9 +1,10 @@
 export const plain = {
   POSTGRES_PORT: 5432,
-  ADMIN_EMAIL: "lexyblazy@gmail.com",
-  INTERNAL_LOGS_EMAIL: "logs@commercify.com",
-  SUPPORT_EMAIL: "support@commercify.com",
-  WELCOME_EMAIL: "hello@commercify.com",
+  OWNER_EMAIL: "lexyblazy@gmail.com",
+  ADMIN_EMAIL: "admin@commercify.xyz",
+  INTERNAL_LOGS_EMAIL: "logs@commercify.xyz",
+  SUPPORT_EMAIL: "support@commercify.xyz",
+  WELCOME_EMAIL: "hello@commercify.xyz",
   SERVER_URL: "https://api.commercify.xyz",
   FRONTEND_URL: "https://web.commercify.xyz",
 };
