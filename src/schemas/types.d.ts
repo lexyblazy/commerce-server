@@ -66,6 +66,7 @@ interface ProductEntity {
 
   name: string;
   description: string;
+  slug: string;
   // images: ProductImage[];
 
   price: import("bignumber.js").BigNumber;

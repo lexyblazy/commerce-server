@@ -35,6 +35,12 @@ export const product = new EntitySchema<ProductEntity>({
       nullable: false,
       transformer: utils.db.transformers.bigNumber,
     },
+
+    slug: {
+      type: String,
+      unique: true,
+      nullable: false,
+    },
   },
 
   relations: {
