@@ -9,7 +9,7 @@ export const create = () => {
 
   router.post("/", auth.handlers.isAuthenticated, handlers.create);
 
-  router.get("/:id", handlers.get);
+  router.get("/:slug", handlers.get);
 
   return router;
 };

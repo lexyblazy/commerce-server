@@ -4,9 +4,11 @@ import _ from "lodash";
 import BigNumber from "bignumber.js";
 import HttpStatus from "http-status-codes";
 import Joi from "joi";
+import nanoid from "nanoid";
 
 import * as schemas from "../../schemas";
 import * as utils from "../../utils";
+import slug from "slug";
 
 const validate = <T>(body: T) => {
   const schema = Joi.object({
@@ -52,6 +54,7 @@ export const create = async (req: express.Request, res: express.Response) => {
         description,
         price: new BigNumber(price),
         merchant: req.session.user,
+        slug: `${slug(name)}-${nanoid.nanoid()}`,
       };
 
       const product = await productsRepository.save(newProduct);
