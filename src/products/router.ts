@@ -11,15 +11,5 @@ export const create = () => {
 
   router.get("/:id", handlers.get);
 
-  // publicly available
-  router.get("/:merchantId/products", handlers.list.external);
-
-  // only available to the real merchant
-  router.get(
-    "/products",
-    auth.handlers.isAuthenticated,
-    handlers.list.internal
-  );
-
   return router;
 };

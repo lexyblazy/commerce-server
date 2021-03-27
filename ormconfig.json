@@ -9,5 +9,6 @@
   "migrations": ["build/migrations/*.js"],
   "cli": {
     "migrationsDir": "src/migrations"
-  }
+  },
+  "logging": ["query", "schema", "error"]
 }
