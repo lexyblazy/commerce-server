@@ -16,12 +16,14 @@ utils.logging.logFunctionException(async () => {
   const passwordResetRequestRepository = typeormConnection.getRepository(
     schemas.passwordResetRequest
   );
+  const productsRepository = typeormConnection.getRepository(schemas.product);
 
   const criteria = { id: typeorm.Not(typeorm.IsNull()) };
   await Promise.all([
     emailVerificationRequestsRepository.delete(criteria),
     sessionsRepository.delete(criteria),
     passwordResetRequestRepository.delete(criteria),
+    productsRepository.delete(criteria),
   ]);
 
   await merchantsRepository.delete(criteria);

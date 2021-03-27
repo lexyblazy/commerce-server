@@ -5,7 +5,7 @@ import * as kms from "../../kms";
 import * as email from "../email";
 import * as environment from "../environment";
 
-const fileName = `${Date.now()}-error.txt`;
+const fileName = `development.log.txt`;
 
 export const logFunctionException = async <T>(fn: () => T, logName: string) => {
   try {
@@ -19,7 +19,10 @@ export const logFunctionException = async <T>(fn: () => T, logName: string) => {
   } catch (error) {
     console.log(logName, error);
 
-    const readableError = JSON.stringify(error, undefined, 3);
+    const readableError = ` 
+    \n${"=".repeat(1000)}\n\n${Date()}
+    ${JSON.stringify(error, undefined, 3)}\n${"=".repeat(1000)}\n\n
+    `;
 
     // use logFiles for development errors, use email/sentry for staging errors
     if (environment.isDevelopment()) {
