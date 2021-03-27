@@ -41,7 +41,7 @@ export const requestPasswordReset = (
         return res.send(HttpStatus.OK);
       }
 
-      const newPasswordResetRequest: Partial<PasswordResetRequest> = {
+      const newPasswordResetRequest: Partial<PasswordResetRequestEntity> = {
         token: uuid.v4(),
         expiresAt: moment().add(1, "hours").toDate(),
         user: merchant,
