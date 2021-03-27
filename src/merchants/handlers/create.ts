@@ -14,6 +14,7 @@ import * as sessions from "../../sessions";
 import * as utils from "../../utils";
 
 import * as consts from "../consts";
+import * as helpers from "../helpers";
 
 const validate = <T>(body: T) => {
   const schema = Joi.object({
@@ -145,7 +146,7 @@ export const create = async (req: express.Request, res: express.Response) => {
       });
 
       const response = {
-        merchant: _.pick(merchant, consts.PUBLIC_FIELDS),
+        merchant: helpers.getPublic(merchant),
         session: _.pick(session, sessions.consts.PUBLIC_FIELDS),
       };
 

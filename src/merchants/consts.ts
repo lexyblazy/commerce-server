@@ -4,6 +4,7 @@ export const PUBLIC_FIELDS: (keyof MerchantEntity)[] = [
   "email",
   "firstName",
   "lastName",
+  "businessName",
 ];
 
 export const SALT_ROUNDS = 10;
