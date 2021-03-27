@@ -11,6 +11,8 @@ interface MerchantEntity {
   lastName: string;
 
   emailVerified: boolean;
+  businessName: string;
+  businessNameSlug: string;
 }
 
 interface SessionEntity {
@@ -37,7 +39,7 @@ interface EmailVerificationRequestEntity {
   user: MerchantEntity;
 }
 
-interface PasswordResetRequest {
+interface PasswordResetRequestEntity {
   id: string;
 
   createdAt: Date;
@@ -48,4 +50,25 @@ interface PasswordResetRequest {
   user: MerchantEntity;
 
   expiresAt: Date;
+}
+
+interface ProductImage {
+  url: string;
+  position: number;
+  deleted: boolean;
+}
+
+interface ProductEntity {
+  id: string;
+
+  createdAt: Date;
+  updatedAt: Date;
+
+  name: string;
+  description: string;
+  // images: ProductImage[];
+
+  price: import("bignumber.js").BigNumber;
+
+  merchant: MerchantEntity;
 }

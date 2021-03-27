@@ -1,6 +1,8 @@
 import * as express from "express";
 import * as typeorm from "typeorm";
 import * as uuid from "uuid";
+import Joi from "joi";
+import slug from "slug";
 
 import _ from "lodash";
 import bcrypt from "bcrypt";
@@ -12,6 +14,23 @@ import * as sessions from "../../sessions";
 import * as utils from "../../utils";
 
 import * as consts from "../consts";
+
+const validate = <T>(body: T) => {
+  const schema = Joi.object({
+    email: Joi.string().required(),
+    password: Joi.string().required(),
+    firstName: Joi.string().required(),
+    lastName: Joi.string().required(),
+    businessName: Joi.string().required(),
+  });
+
+  const { value, error } = schema.validate(body);
+
+  if (error) {
+    return { ok: false, error: error.details[0].message };
+  }
+  return { ok: true, value };
+};
 
 export const create = async (req: express.Request, res: express.Response) => {
   const LOG_NAME = "merchant.handlers.create => ";
@@ -28,45 +47,64 @@ export const create = async (req: express.Request, res: express.Response) => {
         schemas.emailVerificationRequest
       );
 
-      const { email, password, firstName, lastName } = req.body;
+      const { email, password, firstName, lastName, businessName } = req.body;
 
       const signupFields = {
         email,
         password,
         firstName,
         lastName,
+        businessName,
       };
 
-      for (const fieldName in signupFields) {
-        const fieldValue = _.get(signupFields, fieldName);
-        if (_.isEmpty(fieldValue)) {
-          return res
-            .status(HttpStatus.BAD_REQUEST)
-            .send({ error: `${fieldName} is required` });
-        }
+      const validationResult = validate(signupFields);
+
+      if (!validationResult.ok) {
+        return res
+          .status(HttpStatus.BAD_REQUEST)
+          .send({ error: validationResult.error });
       }
+
+      console.log(LOG_NAME, slug(businessName));
 
       const hashedPassword = bcrypt.hashSync(
         signupFields.password,
         consts.SALT_ROUNDS
       );
 
+      const businessNameSlug = slug(businessName);
+      const normalizedEmail = utils.email.normalize(signupFields.email);
+
       const existingMerchant = await merchantsRepository.findOne({
-        where: {
-          normalizedEmail: utils.email.normalize(signupFields.email),
-        },
+        where: [
+          {
+            normalizedEmail,
+          },
+          {
+            businessNameSlug,
+          },
+        ],
       });
 
       if (existingMerchant) {
-        return res
-          .status(HttpStatus.BAD_REQUEST)
-          .send({ error: "email in use" });
+        if (existingMerchant.normalizedEmail === normalizedEmail) {
+          return res
+            .status(HttpStatus.BAD_REQUEST)
+            .send({ error: "email in use" });
+        } else if (existingMerchant.businessNameSlug === businessNameSlug) {
+          return res
+            .status(HttpStatus.BAD_REQUEST)
+            .send({ error: "business name already taken" });
+        }
+
+        return res.sendStatus(HttpStatus.BAD_REQUEST);
       }
 
       const newMerchant: Partial<MerchantEntity> = {
         ...signupFields,
         password: hashedPassword,
         normalizedEmail: utils.email.normalize(email),
+        businessNameSlug,
       };
 
       const merchant = await merchantsRepository.save(newMerchant);
