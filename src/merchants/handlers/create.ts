@@ -22,7 +22,7 @@ const validate = <T>(body: T) => {
     password: Joi.string().required(),
     firstName: Joi.string().required(),
     lastName: Joi.string().required(),
-    businessName: Joi.string().required(),
+    storeName: Joi.string().required(),
   });
 
   const { value, error } = schema.validate(body);
@@ -48,14 +48,14 @@ export const create = async (req: express.Request, res: express.Response) => {
         schemas.emailVerificationRequest
       );
 
-      const { email, password, firstName, lastName, businessName } = req.body;
+      const { email, password, firstName, lastName, storeName } = req.body;
 
       const signupFields = {
         email,
         password,
         firstName,
         lastName,
-        businessName,
+        storeName,
       };
 
       const validationResult = validate(signupFields);
@@ -66,14 +66,14 @@ export const create = async (req: express.Request, res: express.Response) => {
           .send({ error: validationResult.error });
       }
 
-      console.log(LOG_NAME, slug(businessName));
+      console.log(LOG_NAME, slug(storeName));
 
       const hashedPassword = bcrypt.hashSync(
         signupFields.password,
         consts.SALT_ROUNDS
       );
 
-      const businessNameSlug = slug(businessName);
+      const storeNameSlug = slug(storeName);
       const normalizedEmail = utils.email.normalize(signupFields.email);
 
       const existingMerchant = await merchantsRepository.findOne({
@@ -82,7 +82,7 @@ export const create = async (req: express.Request, res: express.Response) => {
             normalizedEmail,
           },
           {
-            businessNameSlug,
+            storeNameSlug,
           },
         ],
       });
@@ -92,7 +92,7 @@ export const create = async (req: express.Request, res: express.Response) => {
           return res
             .status(HttpStatus.BAD_REQUEST)
             .send({ error: "email in use" });
-        } else if (existingMerchant.businessNameSlug === businessNameSlug) {
+        } else if (existingMerchant.storeNameSlug === storeNameSlug) {
           return res
             .status(HttpStatus.BAD_REQUEST)
             .send({ error: "business name already taken" });
@@ -105,7 +105,7 @@ export const create = async (req: express.Request, res: express.Response) => {
         ...signupFields,
         password: hashedPassword,
         normalizedEmail: utils.email.normalize(email),
-        businessNameSlug,
+        storeNameSlug,
       };
 
       const merchant = await merchantsRepository.save(newMerchant);

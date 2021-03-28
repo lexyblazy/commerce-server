@@ -11,8 +11,8 @@ interface MerchantEntity {
   lastName: string;
 
   emailVerified: boolean;
-  businessName: string;
-  businessNameSlug: string;
+  storeName: string;
+  storeNameSlug: string;
 }
 
 interface SessionEntity {

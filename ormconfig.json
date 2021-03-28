@@ -10,5 +10,5 @@
   "cli": {
     "migrationsDir": "src/migrations"
   },
-  "logging": ["query", "schema", "error"]
+  "logging": "all"
 }

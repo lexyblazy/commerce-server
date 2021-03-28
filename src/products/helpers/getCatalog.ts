@@ -3,7 +3,7 @@ import * as typeorm from "typeorm";
 import * as schemas from "../../schemas";
 import * as utils from "../../utils";
 
-export const getCatalog = async (businessNameSlug: string) => {
+export const getCatalog = async (storeNameSlug: string) => {
   const LOG_NAME = "products.helpers.getCatalog =>";
 
   return utils.logging.logFunctionException(async () => {
@@ -16,8 +16,8 @@ export const getCatalog = async (businessNameSlug: string) => {
 
     const merchantQuerybuilder = merchantsRepository
       .createQueryBuilder("merchant")
-      .where(`merchant.businessNameSlug = :businessNameSlug`, {
-        businessNameSlug,
+      .where(`merchant.storeNameSlug = :storeNameSlug`, {
+        storeNameSlug,
       })
       .select("merchant.id");
 

@@ -12,14 +12,16 @@ export const get: express.RequestHandler = async (req, res) => {
 
   return utils.logging.logHandlerException(
     async () => {
-      const businessNameSlug = req.params.slug;
+      const { slug } = req.params;
 
       const typeormConnection = typeorm.getConnection();
       const merchantsRepository = typeormConnection.getRepository(
         schemas.merchant
       );
 
-      const merchant = await merchantsRepository.findOne({ businessNameSlug });
+      const merchant = await merchantsRepository.findOne({
+        storeNameSlug: slug,
+      });
 
       if (!merchant) {
         res.status(400).send({ error: "Merchant not found" });
@@ -27,9 +29,7 @@ export const get: express.RequestHandler = async (req, res) => {
         return;
       }
 
-      const productsCatalog = await products.helpers.getCatalog(
-        businessNameSlug
-      );
+      const productsCatalog = await products.helpers.getCatalog(slug);
 
       res.send({
         products: productsCatalog ?? [],
