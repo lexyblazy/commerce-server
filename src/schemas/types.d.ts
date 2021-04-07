@@ -70,6 +70,19 @@ interface ProductEntity {
   // images: ProductImage[];
 
   price: import("bignumber.js").BigNumber;
+  comparePrice: import("bignumber.js").BigNumber | null;
+  costPerItem: import("bignumber.js").BigNumber;
+
+  isPhysicalProduct: boolean;
+  quantity: import("bignumber.js").BigNumber | null;
+  allowOutOfStockPurchase: boolean;
+
+  sku: string;
+  barcode: string;
 
   merchant: MerchantEntity;
+}
+
+interface ProductHistory {
+  event: "PRICE_CHANGED" | "NAME_CHANGED" | "DESCRIPTION_CHANGED";
 }

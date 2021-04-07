@@ -23,8 +23,19 @@ export const product = new EntitySchema<ProductEntity>({
       updateDate: true,
     },
 
+    name: {
+      type: String,
+      nullable: false,
+    },
+
     description: {
       type: String,
+      nullable: false,
+    },
+
+    slug: {
+      type: String,
+      unique: true,
       nullable: false,
     },
 
@@ -36,10 +47,50 @@ export const product = new EntitySchema<ProductEntity>({
       transformer: utils.db.transformers.bigNumber,
     },
 
-    slug: {
-      type: String,
-      unique: true,
+    comparePrice: {
+      type: "numeric",
+      precision: 18,
+      scale: 2,
+      transformer: utils.db.transformers.bigNumber,
+      nullable: true,
+      default: null,
+    },
+
+    costPerItem: {
+      type: "numeric",
+      precision: 18,
+      scale: 2,
       nullable: false,
+      transformer: utils.db.transformers.bigNumber,
+    },
+
+    quantity: {
+      type: "integer",
+      nullable: true,
+      default: null,
+      transformer: utils.db.transformers.bigNumber,
+    },
+
+    barcode: {
+      type: String,
+      nullable: false,
+    },
+
+    sku: {
+      type: String,
+      nullable: false,
+    },
+
+    isPhysicalProduct: {
+      type: Boolean,
+      nullable: false,
+      default: false,
+    },
+
+    allowOutOfStockPurchase: {
+      type: Boolean,
+      nullable: false,
+      default: false,
     },
   },
 
@@ -53,5 +104,10 @@ export const product = new EntitySchema<ProductEntity>({
     },
   },
 
-  checks: [],
+  checks: [
+    {
+      name: "checkPhysicalProductMustHaveAtLeastOneUnit",
+      expression: `("isPhysicalProduct" IS FALSE) OR ("isPhysicalProduct" IS TRUE AND quantity IS NOT NULL AND quantity > 0)`,
+    },
+  ],
 });
