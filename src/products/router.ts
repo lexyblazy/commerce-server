@@ -11,5 +11,7 @@ export const create = () => {
 
   router.get("/:slug", handlers.get);
 
+  router.get("/", auth.handlers.isAuthenticated, handlers.list);
+
   return router;
 };

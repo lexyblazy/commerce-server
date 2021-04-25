@@ -138,7 +138,7 @@ export const create = async (req: express.Request, res: express.Response) => {
        We hope that you enjoy your experience using our platform.
       `;
 
-      await utils.email.sendEmail({
+      utils.email.sendEmail({
         from: kms.SETTINGS.WELCOME_EMAIL,
         to: merchant.email,
         html: emailbody,

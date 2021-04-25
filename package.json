@@ -6,6 +6,9 @@
   "repository": "git@github.com:lexyblazy/commerce-server.git",
   "author": "adekola.olalekan01@gmail.com",
   "license": "MIT",
+  "engines": {
+    "node": "10"
+  },
   "husky": {
     "hooks": {
       "pre-commit": "yarn lint && yarn build"
