@@ -85,6 +85,30 @@ export const create = async (req: express.Request, res: express.Response) => {
           .send({ error: "Cost price cannot be greater than selling price" });
       }
 
+      const existingProduct = await productsRepository.findOne({
+        where: [
+          {
+            merchant: req.session.user,
+            sku,
+          },
+          {
+            merchant: req.session.user,
+            barcode,
+          },
+        ],
+      });
+
+      if (existingProduct) {
+        let error = "";
+        if (existingProduct.sku === sku) {
+          error = `Product with SKU = ${sku} already exists`;
+        } else if (existingProduct.barcode === barcode) {
+          error = `Product with barcode = ${barcode} already exists`;
+        }
+
+        return res.status(HttpStatus.BAD_REQUEST).send({ error });
+      }
+
       const newProduct: Partial<ProductEntity> = {
         name,
         description,

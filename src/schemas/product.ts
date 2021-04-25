@@ -110,4 +110,24 @@ export const product = new EntitySchema<ProductEntity>({
       expression: `("isPhysicalProduct" IS FALSE) OR ("isPhysicalProduct" IS TRUE AND quantity IS NOT NULL AND quantity > 0)`,
     },
   ],
+
+  /* 
+    SKUs/barcode are unique on a merchant basis, two products can have the same SKU/barcode
+    as long as they belong to different merchants. 
+    A single merchant cannot have two products with the same SKU/barcode
+  
+  */
+  indices: [
+    {
+      columns: ["merchant", "sku"],
+      unique: true,
+      name: "indexUqMerchantIdAndSKU",
+    },
+
+    {
+      columns: ["merchant", "barcode"],
+      unique: true,
+      name: "indexUqMerchantIdAndBarcode",
+    },
+  ],
 });
