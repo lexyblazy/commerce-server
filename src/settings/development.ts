@@ -12,6 +12,7 @@ export const plain = {
   WELCOME_EMAIL: "hello@commercify.xyz",
   SERVER_URL: "http://localhost:5000",
   FRONTEND_URL: "http://localhost:3000",
+  AWS_S3_COMMERCIFY_IMAGE_BUCKET: "commercify-images",
 };
 
 export const encrypted = {

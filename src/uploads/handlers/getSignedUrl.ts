@@ -31,8 +31,6 @@ export const getSignedUrl = async (
           ACL: "public-read",
         };
 
-        console.log(s3Params);
-
         return s3.getSignedUrlPromise("putObject", s3Params);
       });
 
