@@ -10,7 +10,7 @@ script:
 deploy:
   provider: elasticbeanstalk
   region: "us-east-2"
-  app: "Commercify"
+  app: "commercify-staging"
   env: "commercify-staging"
   bucket_name: "elasticbeanstalk-us-east-2-017908065641"
   bucket_path: "commercify-staging"
