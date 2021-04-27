@@ -52,5 +52,16 @@ export const merchant = new typeorm.EntitySchema<MerchantEntity>({
       nullable: false,
       default: false,
     },
+
+    storeName: {
+      type: String,
+      nullable: true,
+    },
+
+    storeNameSlug: {
+      type: String,
+      unique: true,
+      nullable: true,
+    },
   },
 });

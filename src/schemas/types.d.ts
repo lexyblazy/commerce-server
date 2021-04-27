@@ -11,6 +11,8 @@ interface MerchantEntity {
   lastName: string;
 
   emailVerified: boolean;
+  storeName: string;
+  storeNameSlug: string;
 }
 
 interface SessionEntity {
@@ -37,7 +39,7 @@ interface EmailVerificationRequestEntity {
   user: MerchantEntity;
 }
 
-interface PasswordResetRequest {
+interface PasswordResetRequestEntity {
   id: string;
 
   createdAt: Date;
@@ -48,4 +50,39 @@ interface PasswordResetRequest {
   user: MerchantEntity;
 
   expiresAt: Date;
+}
+
+interface ProductImage {
+  url: string;
+  position: number;
+  deleted: boolean;
+}
+
+interface ProductEntity {
+  id: string;
+
+  createdAt: Date;
+  updatedAt: Date;
+
+  name: string;
+  description: string;
+  slug: string;
+  // images: ProductImage[];
+
+  price: import("bignumber.js").BigNumber;
+  comparePrice: import("bignumber.js").BigNumber | null;
+  costPerItem: import("bignumber.js").BigNumber;
+
+  isPhysicalProduct: boolean;
+  quantity: import("bignumber.js").BigNumber | null;
+  allowOutOfStockPurchase: boolean;
+
+  sku: string;
+  barcode: string;
+
+  merchant: MerchantEntity;
+}
+
+interface ProductHistory {
+  event: "PRICE_CHANGED" | "NAME_CHANGED" | "DESCRIPTION_CHANGED";
 }

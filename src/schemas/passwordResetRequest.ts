@@ -1,6 +1,8 @@
 import { EntitySchema } from "typeorm";
 
-export const passwordResetRequest = new EntitySchema<PasswordResetRequest>({
+export const passwordResetRequest = new EntitySchema<
+  PasswordResetRequestEntity
+>({
   name: "passwordResetRequests",
   columns: {
     id: {

@@ -6,6 +6,7 @@ import * as uuid from "uuid";
 import _ from "lodash";
 import HttpStatus from "http-status-codes";
 
+import * as merchants from "../../merchants";
 import * as schemas from "../../schemas";
 import * as utils from "../../utils";
 
@@ -65,7 +66,10 @@ export const create = async (req: express.Request, res: express.Response) => {
 
       const session = await sessionsRepository.save(newSession);
 
-      return res.send(_.pick(session, consts.PUBLIC_FIELDS));
+      return res.send({
+        session: _.pick(session, consts.PUBLIC_FIELDS),
+        merchant: _.pick(session.user, merchants.consts.PUBLIC_FIELDS),
+      });
     },
     LOG_NAME,
     res

@@ -12,5 +12,7 @@ export const create = () => {
 
   router.post("/reset-password", handlers.resetPassword);
 
+  router.get("/:slug", handlers.get);
+
   return router;
 };

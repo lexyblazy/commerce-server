@@ -2,6 +2,8 @@ import sgMail from "@sendgrid/mail";
 
 import * as kms from "../../kms";
 
+import * as environment from "../environment";
+
 export const sendEmail = async ({
   from,
   to,
@@ -13,7 +15,9 @@ export const sendEmail = async ({
   subject: string;
   html: string;
 }) => {
-  sgMail.setApiKey(kms.SETTINGS.SENDGRID_API_KEY);
+  environment.isStaging()
+    ? sgMail.setApiKey(kms.SETTINGS.SENDGRID_API_KEY)
+    : sgMail.setApiKey(process.env.SENDGRID_API_KEY as string);
 
   const msg = {
     to,
